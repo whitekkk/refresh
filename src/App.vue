@@ -1,9 +1,9 @@
 <template>
-  <div class="">
+  <div class="" onunload="myFunction()">
     <button type="button" @click="stops">Stop</button>
     <button type="button" @click="starts">Start</button>
     {{stat}} {{time}} <br>
-    <iframe id="frames" src="http://10.4.15.237/index" height="1000" width="1000">
+    <iframe id="frames" src="" height="1000" width="1000">
       <!-- <meta http-equiv="refresh" :content="stop" > -->
     </iframe>
   </div>
@@ -11,6 +11,10 @@
 
 <script>
 import HelloWorld from './components/HelloWorld'
+
+window.onbeforeunload = function () {
+  return 'Noo!'
+}
 
 export default {
   name: 'App',
