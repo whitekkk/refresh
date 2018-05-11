@@ -1,9 +1,9 @@
 <template>
-  <div class="" onunload="myFunction()">
-    <button type="button" @click="stops">Stop</button>
+  <div onunload="myFunction()" width="1000" height="1000" z-index="999">
+    <button type="button" @click="stops" id="test">Stop</button>
     <button type="button" @click="starts">Start</button>
     {{stat}} {{time}} <br>
-    <iframe id="frames" src="" height="1000" width="1000">
+    <iframe id="frames" src="http://10.4.15.222" height="1000" width="1000" @click="mousePosition()">
       <!-- <meta http-equiv="refresh" :content="stop" > -->
     </iframe>
   </div>
@@ -41,21 +41,20 @@ export default {
     starts () {
       var vm = this
       this.stop = setInterval(function () {
-        if (vm.time === 0) {
-          console.log('re')
-          vm.refreshs()
-        }
-        if (vm.time > 0) {
-          vm.time--
-        } else {
-          vm.time = 60
-        }
-      }, 1000)
+        vm.refreshs()
+      }, 10)
+    },
+    mousePosition () {
+      // let vm = this
+      let position = window.event
+      console.log(position.clientX)
+      console.log(position.clientY)
     }
   },
   mounted () {
     // console.log('re')
     this.starts()
+    // simulate(document.getElementById('frames'), 'click', { pointerX: 100, pointerY: 300 })
   }
 }
 </script>
